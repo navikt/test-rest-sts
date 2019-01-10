@@ -1,0 +1,91 @@
+<!-- HTML for static distribution bundle build -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Swagger UI</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Source+Code+Pro:300,600|Titillium+Web:400,600,700"
+          rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="api/swagger-ui.css">
+    <link rel="icon" type="image/png" href="api/favicon-32x32.png" sizes="32x32"/>
+    <link rel="icon" type="image/png" href="api/favicon-16x16.png" sizes="16x16"/>
+    <style>
+        html {
+            box-sizing: border-box;
+            overflow: -moz-scrollbars-vertical;
+            overflow-y: scroll;
+        }
+
+        *,
+        *:before,
+        *:after {
+            box-sizing: inherit;
+        }
+
+        body {
+            margin: 0;
+            background: #fafafa;
+        }
+    </style>
+</head>
+
+<body>
+<div id="swagger-ui"></div>
+
+<script src="api/swagger-ui-bundle.js"></script>
+<script src="api/swagger-ui-standalone-preset.js"></script>
+<script>
+
+    var orgFetch;
+
+    window.setExtraHeader = function (sessionId) {
+        var system = window.ui.getSystem();
+
+        if (!system) return;
+
+        if (!orgFetch) {
+            orgFetch = system.fn.fetch;
+        }
+
+        system.fn.fetch = function (obj) {
+            if (!obj) return;
+
+            if (!obj.headers) {
+                obj.headers = {};
+            }
+
+            obj.headers['sessionId'] = sessionId;
+
+            return orgFetch(obj)
+                .then(function (fetchRes) {
+                    return fetchRes;
+                });
+        }
+
+        system.specActions.download();
+    }
+
+    window.onload = function () {        
+        var location = window.location.toString().substring(0, window.location.toString().indexOf("api.html")) + "rest/swagger.json";        
+        
+        // Må anpasses etter miljo og hvilken adresse.
+        const ui = SwaggerUIBundle({
+            url: location,
+            dom_id: '#swagger-ui',
+            deepLinking: true,
+            presets: [
+                SwaggerUIBundle.presets.apis,
+                SwaggerUIStandalonePreset
+            ],
+            plugins: [
+                SwaggerUIBundle.plugins.DownloadUrl
+            ],
+            layout: "StandaloneLayout"
+        })
+
+        window.ui = ui
+        window.setExtraHeader(localStorage.getItem("sessionId"));
+    }
+</script>
+</body>
+</html>

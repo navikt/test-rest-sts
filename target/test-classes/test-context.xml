@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--suppress SpringFacetInspection, Unparsed CustomBeanInspection -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:jaxrs="http://cxf.apache.org/jaxrs"
+       xsi:schemaLocation="
+    http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd
+    http://www.springframework.org/schema/tx
+    http://www.springframework.org/schema/tx/spring-tx.xsd
+    http://cxf.apache.org/jaxrs
+    http://cxf.apache.org/schemas/jaxrs.xsd
+    ">
+
+
+    <bean id="propertyPlaceholderConfigurer"
+          class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"/>
+
+    <context:annotation-config/>
+    <context:component-scan base-package="no.nav.testreststs.restapi"/>
+
+    <!-- BEANS-->    
+    <bean id="accessTokenIssuer" class="no.nav.testreststs.accesstoken.AccessTokenIssuer"/>
+    <bean id="rsaKeyStore" class="no.nav.testreststs.accesstoken.RSAKeyStore"/>
+	
+</beans>

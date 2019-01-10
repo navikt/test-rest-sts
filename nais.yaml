@@ -1,0 +1,42 @@
+image:  "repo.adeo.no:5443/integrasjon/test-rest-sts"
+replicas:
+  min: 1
+  max: 1
+  cpuThresholdPercentage: 80
+port: 8080
+healthcheck:
+  liveness:
+    path: /isAlive
+    initialDelay: 5
+    periodSeconds: 5
+    failureThreshold: 100
+  readiness:
+    path: /isReady
+    initialDelay: 5
+    periodSeconds: 5
+    failureThreshold: 100
+resources:
+  limits:
+    cpu: 400m
+    memory: 512Mi
+  requests:
+    cpu: 200m
+    memory: 256Mi
+fasitResources:
+  used:
+  - alias: ldap
+    resourceType: ldap
+  exposed:
+  - alias: test-rest-sts-openid-configuration
+    resourceType: restservice
+    path: /rest/v1/sts/.well-known/openid-configuration
+  - alias: test-rest-sts-jwks
+    resourceType: restservice
+    path: /rest/v1/sts/jwks
+  - alias: test-rest-sts-token
+    resourceType: restservice
+    path: /rest/v1/sts/token
+  - alias: test-rest-sts-difitoken-exchange
+    resourceType: restservice
+    path: /rest/v1/sts/difitoken/exchange
+      

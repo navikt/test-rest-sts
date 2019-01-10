@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:jaxrs="http://cxf.apache.org/jaxrs"
+       xsi:schemaLocation="
+    http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd
+    http://www.springframework.org/schema/tx
+    http://www.springframework.org/schema/tx/spring-tx.xsd
+    http://cxf.apache.org/jaxrs
+    http://cxf.apache.org/schemas/jaxrs.xsd
+    ">
+
+    <import resource="classpath:META-INF/cxf/cxf.xml"/>
+    <import resource="classpath:META-INF/cxf/cxf-servlet.xml"/>
+
+    <bean id="propertyPlaceholderConfigurer"
+          class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"/>
+
+    <context:annotation-config/>
+    <context:component-scan base-package="no.nav.testreststs.restapi"/>
+
+    <!-- BEANS-->    
+    <bean id="accessTokenIssuer" class="no.nav.testreststs.accesstoken.AccessTokenIssuer"/>
+    <bean id="rsaKeyStore" class="no.nav.testreststs.accesstoken.RSAKeyStore"/>
+    <bean id="accessTokenController" class="no.nav.testreststs.restapi.AccessTokenController"/> 	   
+    <bean id="selftest" class="no.nav.testreststs.restapi.naisjetty.SelfTest"/>
+   
+    <!-- REST controller -->
+    <!-- SERVER -->    
+    <jaxrs:server id="restApi" address="/">
+        <jaxrs:serviceBeans>
+            <ref bean="accessTokenController"/>            
+        </jaxrs:serviceBeans>
+        <jaxrs:providers>
+            <!-- ref bean="jaasPasswordCallback"/-->
+            <bean class="com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider"/>           
+        </jaxrs:providers>
+         <!-- jaxrs:features>
+            <ref bean="swagger2Feature" />
+        </jaxrs:features-->       
+    </jaxrs:server>
+
+</beans>
