@@ -1,6 +1,7 @@
 package no.nav.testreststs.restapi;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.HeaderParam;
 import javax.ws.rs.POST;
@@ -116,7 +117,7 @@ public class AccessTokenController {
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@POST
 	public Response exchangeDifiOidcToken(@Context SecurityContext securityContext, @Context HttpHeaders headers,  
-											@HeaderParam("token") String difiToken) throws Exception {			
+											@FormParam("token") String difiToken) throws Exception {			
 		log.debug("Exchange difi token to oidc token");
 		try {			
 			ControllerUtil.getUserName(securityContext);					
