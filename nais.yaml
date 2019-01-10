@@ -26,17 +26,7 @@ fasitResources:
   used:
   - alias: ldap
     resourceType: ldap
-  exposed:
-  - alias: test-rest-sts-openid-configuration
-    resourceType: restservice
-    path: /rest/v1/sts/.well-known/openid-configuration
-  - alias: test-rest-sts-jwks
-    resourceType: restservice
-    path: /rest/v1/sts/jwks
-  - alias: test-rest-sts-token
-    resourceType: restservice
-    path: /rest/v1/sts/token
-  - alias: test-rest-sts-difitoken-exchange
-    resourceType: restservice
-    path: /rest/v1/sts/difitoken/exchange
-      
+  - alias: test-rest-sts-oidc
+    resourceType: OpenIdConnect
+    propertyMap:      
+      issuerUrl: test.rest.sts.issuerUrl
