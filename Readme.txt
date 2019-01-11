@@ -9,4 +9,6 @@ i q: https://test-rest-sts.nais.preprod.local/rest/v1/sts/difitoken/exchange
 
 Tjenesten forventer:
 2 headere: Content-type= application/x-www-form-urlencoded og basic auth header
-body: token=<encoded difi token>
+body: token=<encoded "difi token">
+
+<encoded "difi token">: base64 encoded jwt. Disse feltene må være med: "client_orgno", "iss", "aud", "jti".
