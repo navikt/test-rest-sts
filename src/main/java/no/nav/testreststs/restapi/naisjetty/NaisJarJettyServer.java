@@ -84,11 +84,9 @@ public class NaisJarJettyServer {
     }
 
     private static void setServletContext(WebAppContext webAppContext) {
-//        webAppContext.addServlet(MetricsServlet.class, "/prometheus");
         webAppContext.addServlet(IsAliveServlet.class, "/isAlive");
         webAppContext.addServlet(SelfTestServlet.class, "/isReady");
         webAppContext.addEventListener(new ContextLoaderListener());
-        DefaultExports.initialize();
     }
 
     private static void startJetty(Server server) throws Exception {

@@ -86,24 +86,6 @@ public class AccessTokenController {
 	}
 	
 	
-	@ApiOperation(hidden=true, value = "")
-	@Path("/isAlive")  
-	@GET
-	public Response ping() throws Exception {
-		return Response.status(Response.Status.OK).build();
-	}
-	
-	@ApiOperation(hidden=true, value = "")
-	@Path("/selftest")  
-	@GET
-	public Response isAlive() throws Exception {		
-		// sjekk et lite kall til databasen
-		if(issuer.selfTest()) {
-			return Response.status(Response.Status.OK).build();
-		}
-		return Response.status(Response.Status.BAD_GATEWAY).build();
-	}
-
 	@ApiOperation(hidden=false, value = "get configuration info")
 	@Path("/.well-known/openid-configuration")  
 	@GET

@@ -32,11 +32,10 @@ public class SelfTest {
 
     public boolean selftest() {    	
     	try {
-    		tokenIssuer.getPublicJWKSet();
+    		return tokenIssuer.selfTest();
     	} catch (Exception e) {
     		return false;	
     	}
-        return true;        
     }
 
 }
