@@ -70,7 +70,7 @@ public class LdapLoginModule extends AbstractLoginModule {
             String webUserName = ((NameCallback) callbacks[0]).getName();
             Object webCredential = ((ObjectCallback) callbacks[1]).getObject();
 
-            if (webUserName == null || webCredential == null) {
+            if (webUserName == null || webUserName.isEmpty() || webCredential == null) {
                 setAuthenticated(false);
                 return isAuthenticated();
             }          
