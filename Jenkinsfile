@@ -48,8 +48,8 @@ pipeline {
         }
         stage('deploy to nais test') {
             environment {
-                FASIT_ENV = 't10'
-                NAMESPACE = 't10'
+                FASIT_ENV = 't4'
+                NAMESPACE = 't4'
             }
             steps {
                 script {
