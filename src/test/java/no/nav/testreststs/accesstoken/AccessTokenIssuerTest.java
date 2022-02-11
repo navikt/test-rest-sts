@@ -77,7 +77,6 @@ public class AccessTokenIssuerTest {
 
 		// sjekk time settings
 		assertTrue(jwt.getNotBeforeTime().compareTo(jwt.getIssueTime()) == 0);
-		assertTrue(jwt.getLongClaim(OidcObject.AUTHTIME_CLAIM) == jwt.getIssueTime().getTime()/1000);
 		assertTrue((jwt.getExpirationTime().getTime() - jwt.getIssueTime().getTime())/1000 == AccessTokenIssuer.OIDC_DURATION_TIME);		
 	    	                			
 

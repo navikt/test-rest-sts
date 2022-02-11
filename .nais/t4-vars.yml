@@ -1,0 +1,11 @@
+namespace: plattformsikkerhet
+team: plattformsikkerhet
+name: test-rest-sts
+ingresses:
+  - https://test-rest-sts-t4.nais.preprod.local
+envs:
+  - name: SPRING_PROFILES_ACTIVE
+    value: remote
+vault-paths:
+  - kvPath: serviceuser/data/test/srvsecurity-token-service
+    mountPath: /secrets/serviceuser

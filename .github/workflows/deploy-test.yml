@@ -1,0 +1,57 @@
+name: Deploy NAIS DEV
+on:
+  push:
+    branches:
+      - main
+env:
+  IMAGE: docker.pkg.github.com/${{ github.repository }}/test-rest-sts:${{ github.sha }}
+
+jobs:
+  build-test-push:
+    name: Build - Test - Push
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Cache Dependecies
+        id: cache-test-rest-sts
+        uses: actions/cache@v1
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+      - name: Set up JDK 8
+        uses: actions/setup-java@v1
+        with:
+          java-version: 8
+      - name: Compile
+        if: steps.cache-test-rest-sts.outputs.cache-hit != 'true'
+        run: mvn compile
+      - name: Run tests
+        run: mvn test
+      - name: Build jar
+        run: mvn -B -DskipTests clean package --file pom.xml
+      - name: Publish Docker image
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          docker build --tag ${IMAGE} .
+          echo "$GITHUB_TOKEN" | docker login --username "$GITHUB_REPOSITORY" --password-stdin https://docker.pkg.github.com
+          docker push ${IMAGE}
+
+  deploy-test:
+    name: Deploy
+    runs-on: ubuntu-latest
+    needs: build-test-push
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Deploy dev-fss t4
+        uses: nais/deploy/actions/deploy@v1
+        env:
+          APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
+          CLUSTER: dev-fss
+          RESOURCE: .nais/nais.yml
+          PRINT_PAYLOAD: true
+          VARS: .nais/t4-vars.yml

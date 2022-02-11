@@ -343,25 +343,4 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-    
-     <!-- NAV MAN-->
-    <distributionManagement>
-        <repository>
-            <id>m2internal</id>
-            <name>NAV Maven2 Internal Repository</name>
-            <url>http://maven.adeo.no/nexus/content/repositories/m2internal</url>
-        </repository>
-        <snapshotRepository>
-            <id>m2snapshot</id>
-            <name>NAV Maven2 Snapshot Repository</name>
-            <url>http://maven.adeo.no/nexus/content/repositories/m2snapshot</url>
-            <uniqueVersion>false</uniqueVersion>
-        </snapshotRepository>
-    </distributionManagement>
-
-    <scm>
-        <developerConnection>scm:git:ssh://git@stash.devillo.no:7999/kes/test-rest-sts.git</developerConnection>
-        <url>http://stash.devillo.no/projects/KES/repos/test-rest-sts</url>
-        <tag>HEAD</tag>
-    </scm>
 </project>
