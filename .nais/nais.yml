@@ -26,11 +26,11 @@ spec:
     max: 2
   resources:
     limits:
-      cpu: 200m
-      memory: 1Gi
+      cpu: 400m
+      memory: 512Mi
     requests:
-      cpu: 300m
-      memory: 1Gi
+      cpu: 200m
+      memory: 256Mi
   cpuThresholdPercentage: 80
   vault:
     enabled: true
