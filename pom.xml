@@ -90,7 +90,7 @@
         <commons-io.version>2.4</commons-io.version>
         <oracle.version>12.1.0.2</oracle.version>
         <junit.version>4.12</junit.version>
-        <jetty.version>9.4.7.v20170914</jetty.version>
+        <jetty.version>9.4.41.v20210516</jetty.version>
         <fasterxml.version>2.8.8</fasterxml.version>
         <cxf.version>3.2.1</cxf.version>
         <servlet.version>4.0.0</servlet.version>
