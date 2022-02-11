@@ -87,7 +87,7 @@
         <spring.version>4.3.12.RELEASE</spring.version>
         <logback.version>1.2.3</logback.version>
         <slf4j.version>1.7.25</slf4j.version>
-        <commons-io.version>2.4</commons-io.version>
+        <commons-io.version>2.11.0</commons-io.version>
         <oracle.version>12.1.0.2</oracle.version>
         <junit.version>4.12</junit.version>
         <jetty.version>9.4.7.v20170914</jetty.version>
