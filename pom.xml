@@ -97,7 +97,7 @@
         <ojdbc.version>12.2.0.1</ojdbc.version>
         <net.logback.version>4.10</net.logback.version>
         <swagger.version>4.5.0</swagger.version>
-        <spring.security.version>4.1.4.RELEASE</spring.security.version>
+        <spring.security.version>5.2.10.RELEASE</spring.security.version>
         <mortbay.version>7.0.0.pre5</mortbay.version>
         <prometheus.version>0.1.0</prometheus.version>
         <hsqldb.version>2.4.0</hsqldb.version>
