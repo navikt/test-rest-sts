@@ -25,7 +25,7 @@ import no.nav.testreststs.ldap.PropertyUtil;
 // DENNE SKAL KUN VÆRE GYLDIG I PREPROD (skal aldri deployes til prod)
 
 public class AccessTokenIssuer {	
-	private String issuer = PropertyUtil.getProperty("test.rest.sts.issuerUrl");
+	private String issuer = PropertyUtil.getProperty("test.rest.sts.issuer.url");
 	
 	private String domain = getDomainFromIssuerURL(issuer);  
 	public static long OIDC_DURATION_TIME = 60 * 60; // seconds

@@ -4,8 +4,8 @@ name: test-rest-sts
 ingresses:
   - https://test-rest-sts-t4.nais.preprod.local
 envs:
-  - name: SPRING_PROFILES_ACTIVE
-    value: remote
+  - name: TEST_REST_STS_ISSUER_URL
+    value: https://test-rest-sts-t4.nais.preprod.local
 vault-paths:
   - kvPath: serviceuser/data/test/srvsecurity-token-service
     mountPath: /secrets/serviceuser
