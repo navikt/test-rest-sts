@@ -86,7 +86,7 @@
         <!-- Dependencies versions -->
         <spring.version>5.3.15</spring.version>
         <logback.version>1.2.10</logback.version>
-        <slf4j.version>1.7.25</slf4j.version>
+        <slf4j.version>1.7.36</slf4j.version>
         <commons-io.version>2.11.0</commons-io.version>
         <oracle.version>12.1.0.2</oracle.version>
         <junit.version>4.12</junit.version>
