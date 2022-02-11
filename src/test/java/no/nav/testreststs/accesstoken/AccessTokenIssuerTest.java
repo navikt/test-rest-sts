@@ -43,7 +43,7 @@ public class AccessTokenIssuerTest {
 		
 	@BeforeClass
 	public static void setupProperties() {
-		 System.setProperty("test.rest.sts.issuerUrl", "https://test-rest-sts.nais.preprod.local");  
+		 System.setProperty("test.rest.sts.issuer.url", "https://test-rest-sts.nais.preprod.local");
 	}
 	
 	@Before
